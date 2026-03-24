@@ -1,52 +1,51 @@
 # Automated Expense Categorizer
 
-## Solution Summary
-Production-ready domain application.
+## Phase 3 Upgrade Summary
+Production-oriented general solution for automated expense categorizer workflows.
 
-This Phase-2 implementation is a domain-ready, deployable web application for **AI & Data** workflows.
+## Domain Context
+- Domain: **General**
+- Core Entity: **Domain Record**
+- Lifecycle Statuses: `new, active, done`
 
-## Core Capabilities
-- Responsive dashboard with KPI cards and recent activity table
-- Domain record lifecycle with full CRUD (web + API)
-- Dynamic schema fields tailored to this use case
-- Status pipeline: `new, processing, validated, deployed`
-- Docker + Gunicorn deployment assets, CI checks, and Pytest tests
+## Architecture
+- Flask application factory pattern (`app/__init__.py`)
+- Layered backend (`routes` → `services` → `repositories`)
+- SQLAlchemy persistence with JSON payload modeling
+- REST API + HTML dashboard + CSV exports
+- Deployment surfaces (`Dockerfile`, `docker-compose.yml`, `Procfile`, `wsgi.py`)
 
-## Domain Model
-- Primary entity: **Automated Expense Insight**
-- Collection: **Automated Expense Insights**
-- Dynamic fields:
-- Source Input (`source_input` / textarea)
-- Model Output (`model_output` / textarea)
-- Confidence Score (`confidence_score` / number)
+## Capability Set
+- Role-ready modular architecture (routes, services, repositories)
+- Operational dashboard with status metrics and pipeline view
+- CRUD workflows via web UI and REST API
+- CSV export endpoint for reporting
+- Ready for production via Gunicorn, Docker, and Procfile
 
-## Operational Workflow
-1. Capture source data
-2. Run analysis
-3. Review confidence
-4. Publish insight
+## Dynamic Schema
+- Owner (`owner` / text)
+- Impact Score (`impact_score` / number)
+- Notes (`notes` / textarea)
 
-## API
-- `GET /api/health`
-- `GET /api/schema`
-- `GET /api/records`
-- `POST /api/records`
-- `GET /api/metrics`
-
-## Run Locally
+## Quick Start
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python app.py
+python run.py
 ```
 
-## Docker Run
-```bash
-docker compose up --build
-```
+## API Highlights
+- `GET /api/health`
+- `GET /api/schema`
+- `GET /api/items`
+- `POST /api/items`
+- `PUT /api/items/<id>`
+- `DELETE /api/items/<id>`
+- `GET /api/metrics`
 
 ## Proof of Concept
 - [proof-of-concept.md](proof-of-concept.md)
 - [proof/demo-output.txt](proof/demo-output.txt)
 - [proof/ui-preview.svg](proof/ui-preview.svg)
+- [proof/architecture.md](proof/architecture.md)
